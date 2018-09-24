@@ -1,0 +1,85 @@
+html {
+    font-family: 'Roboto Condensed', sans-serif;
+    background-color:white;
+}
+
+p {
+    text-align: justify;
+
+}
+img {
+    display: block;
+    margin: 0 auto;
+}
+li {
+    width: 500px;
+}
+
+body {
+    width: 900px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 10px 10px 10px 20px;
+    border: 2px solid black;
+  }
+
+.bar--positive {
+  fill: steelblue;
+}
+
+.bar--negative {
+  fill: #ff4d4d;
+}
+
+.bar:hover {
+  fill: grey;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+}
+
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 1px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip-e:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25C0";
+  margin: -4px 0 0 0;
+  top: 0%;
+  left: 0%;
+  text-align: center;
+}
+
+.d3-tip-w:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25B6";
+  margin: -4px 0 0 -1px;
+  top: 0%;
+  left: 100%;
+  text-align: center;
+}
+
+
