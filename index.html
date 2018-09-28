@@ -1,18 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="styles/style.css" />
-  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet"> 
-	<title>Migración-Colombia</title>
-</head>
-<body>
-  <div>
-  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Migración-Colombia</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+  </head>
+  <body>
     <h1 align="center">Migración desde y hacia Colombia</h1>
-    <script src="scripts/main.js" type="text/javascript"></script>
-  </div>
-  <h2>Promedio: <strong>3.00</strong></h2>
-    <p>Microeconomía 3</p>
-</body>
+    <div class="slidecontainer">
+      <p></p>
+      <input type="range" min="2" max="30" value="5" step="1">
+    </div>
+    <div>
+      <script src="scripts/main.js" type="text/javascript"></script>
+    </div> 
+<div class="container-fluid">
+            <div class="row ">
+                <div class="col-sm-12 col-md-12">
+                        <h2 id="titulo-hist" align="center">Evolución histórica</h2>
+                        <div id="historico">
+                          <script src="scripts/historic.js" type="text/javascript"></script>
+                        </div>
+                </div>
+            </div>
+        </div>
+            <div>
+       <input type="button" onclick=updateLines("Total") value="Ver total"> 
+     </div> 
+  </body>
 </html>
