@@ -102,6 +102,14 @@ d3.csv("data/dataMig.csv")
     .style("text-anchor", "middle")
     .text("Flujo neto de viajeros en 2018");
 
+  var check=document.getElementsByClassName("y axis")[0].getElementsByClassName("tick");
+
+  for (var i = 0; i < check.length; i++) {
+    check[i].onclick= function() {
+      updateLines(this.__data__)
+    };
+  }
+
 });
 
 // update
@@ -189,9 +197,23 @@ function updateBars(filterBars) {
 
   selTotal.removeChild(selectionA)
   selTotal.insertAdjacentElement("beforeend", selectionA);
+
+  var check=document.getElementsByClassName("y axis")[0].getElementsByClassName("tick");
+
+  for (var i = 0; i < check.length; i++) {
+    check[i].onclick= function() {
+      updateLines(this.__data__)
+    };
+  }
   
 });
 
 
 
 };
+
+// check.onclick = function() {
+//   console.log(this.__data__)
+// };
+// console.log(check[0]);
+// html body svg g g.y.axis g.tick
