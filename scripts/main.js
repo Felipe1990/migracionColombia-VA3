@@ -1,11 +1,11 @@
 // slider
 
 var slider = document.getElementsByTagName("input")[0];
-var output = document.getElementsByClassName("slidecontainer")[0].getElementsByTagName("p")[0];
-output.innerHTML = "Top " + slider.value + " países, ségún flujo de migrantes (salidas + entradas)"; // Display the default slider value
+var output = document.getElementsByClassName("slidecontainer")[0].getElementsByTagName("p")[2];
+output.innerHTML = "Principales " + slider.value + " países, ségún flujo de viajeros (salidas + entradas)"; // Display the default slider value
 
 slider.oninput = function() {
-    output.innerHTML = output.innerHTML = "Top " + this.value + " países, ségún flujo de migrantes (salidas + entradas)";
+    output.innerHTML = output.innerHTML = "Principales " + this.value + " países, ségún flujo de viajeros (salidas + entradas)";
     updateBars(this.value);
     // console.log(this.value);
 } 
@@ -74,9 +74,8 @@ d3.csv("data/dataMig.csv")
             div.transition()    
                 .duration(200)    
                 .style("opacity", .9);    
-            div .html("Entradas: " + "<br>" + formatThousand(+d.entradas) + "<p>" + "Salidas: " +"<br>"+ formatThousand(+d.salidas))
-                .style("left", 350 + "px")   
-                .style("top", 160 + "px")})          
+            div.html("Entradas 2018: " + "<br>" + formatThousand(+d.entradas) + "<p>" + "Salidas 2018: " +"<br>"+ formatThousand(+d.salidas))
+          })          
         .on("mouseout", function(d) {   
             div.transition()    
                 .duration(500)    
@@ -95,6 +94,13 @@ d3.csv("data/dataMig.csv")
     .call(d3.axisBottom(x))
     .attr("class", "x axis")
     .attr("transform", "translate(0," + height + ")");
+
+  svg.append("text")             
+    .attr("transform",
+          "translate(" + (width/2) + " ," + 
+                         (height+30) + ")")
+    .style("text-anchor", "middle")
+    .text("Flujo neto de viajeros en 2018");
 
 });
 
@@ -144,9 +150,8 @@ function updateBars(filterBars) {
             div.transition()    
                 .duration(200)    
                 .style("opacity", .9);    
-            div .html("Entradas: " + "<br>" + formatThousand(+d.entradas) + "<p>" + "Salidas: " +"<br>"+ formatThousand(+d.salidas))
-                .style("left", 350 + "px")   
-                .style("top", 160 + "px")})          
+            div .html("Entradas 2018: " + "<br>" + formatThousand(+d.entradas) + "<p>" + "Salidas 2018: " +"<br>"+ formatThousand(+d.salidas))
+                })          
         .on("mouseout", function(d) {   
             div.transition()    
                 .duration(500)    

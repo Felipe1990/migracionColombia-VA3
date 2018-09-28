@@ -1,8 +1,4 @@
-var svgHistorico = d3.select("#historico").append("svg")
-    .attr("width", generalWidth)
-    .attr("height", 500)
-    .append("g")
-      .attr("transform", "translate(" + (margin.left+20) + "," + margin.top + ")");
+var heightHist=400 - margin.top - margin.bottom;
 
 var parseDate=d3.timeParse('%Y-%m');
 var formatDate=d3.timeFormat("%B, %Y")
@@ -18,7 +14,7 @@ var drawSalidas=d3.line()
 // graph
 
 var yhist = d3.scaleLinear()
-    .range([height, 0], 0.1);
+    .range([heightHist, 0], 0.1);
 
 var xhist = d3.scaleTime()
     .range([0, width*0.95])
@@ -29,6 +25,11 @@ var divHist = d3.select("body").append("div")
    .attr("class", "tooltipHist")          
    .style("opacity", 0);
     
+var svgHistorico = d3.select("#historico").append("svg")
+    .attr("width", generalWidth)
+    .attr("height", 400)
+    .append("g")
+      .attr("transform", "translate(" + (margin.left+20) + "," + margin.top + ")");
 
 // enter de data
 d3.csv("data/dataMig2.csv")
@@ -74,8 +75,8 @@ d3.csv("data/dataMig2.csv")
             divHist.transition()    
                 .duration(900)    
                 .style("opacity", .9);    
-             divHist.html("Entradas: "+ formatThousand(d.entradas) +"<p>"+ formatDate(d.fecha))  
-                .style("left", (d3.event.pageX) + "px")   
+             divHist.html(formatDate(d.fecha) +"<p>"+ formatThousand(d.entradas)+" entradas" )
+                .style("left", (d3.event.pageX+10) + "px")   
                 .style("top", (d3.event.pageY - 28) + "px")
                 .style("background", "lightsteelblue");
             d3.select(this).transition()
@@ -103,8 +104,8 @@ d3.csv("data/dataMig2.csv")
             divHist.transition()    
                 .duration(900)    
                 .style("opacity", .9);    
-            divHist.html("Salidas: "+ formatThousand(d.salidas) +"<p>"+ formatDate(d.fecha))  
-                .style("left", (d3.event.pageX) + "px")   
+            divHist.html(formatDate(d.fecha) +"<p>"+ formatThousand(d.salidas)+" salidas" )  
+                .style("left", (d3.event.pageX+10) + "px")   
                 .style("top", (d3.event.pageY - 28) + "px")
                 .style("background", "pink");
             d3.select(this).transition()
@@ -122,12 +123,42 @@ d3.csv("data/dataMig2.csv")
 
   svgHistorico.append("g")
     .attr("class", "x-axis-hist")
-    .attr("transform", `translate(0,${height})`)
+    .attr("transform", `translate(0,${heightHist})`)
       .call(d3.axisBottom(xhist));
 
   svgHistorico.append("g")
   .attr("class", "y-axis-hist")
     .call(d3.axisLeft(yhist));
+
+  svgHistorico.append("rect")
+    .attr("x", xhist(parseDate("2018-8")))
+    .attr("y", yhist(Math.max(d3.max(datasorHist, d=>d.entradas), d3.max(datasorHist, d=>d.salidas))*0.2))
+    .attr("width", 10)
+    .attr("height", 10)
+    .style("fill", "steelblue");
+
+  svgHistorico.append("text")
+    .attr("class", "labelSalidas")
+    .attr("x", xhist(parseDate("2018-10")))
+    .attr("y", yhist(Math.max(d3.max(datasorHist, d=>d.entradas), d3.max(datasorHist, d=>d.salidas))*0.2)+10)
+    .style("font-size", "12px")
+    .text("Entradas");
+
+  svgHistorico.append("rect")
+    .attr("x", xhist(parseDate("2018-8")))
+    .attr("y", yhist(Math.max(d3.max(datasorHist, d=>d.entradas), d3.max(datasorHist, d=>d.salidas))*0.1))
+    .attr("width", 10)
+    .attr("height", 10)
+    .style("fill", "red");
+
+  svgHistorico.append("text")
+    .attr("class", "labelSalidas")
+    .attr("x", xhist(parseDate("2018-10")))
+    .attr("y", yhist(Math.max(d3.max(datasorHist, d=>d.entradas), d3.max(datasorHist, d=>d.salidas))*0.1)+10)
+    .style("font-size", "12px")
+    .text("Salidas");
+
+
 });
 
 
@@ -180,7 +211,7 @@ d3.csv("data/dataMig2.csv")
   d3.selectAll(".x-axis-hist")
     .transition()
     .duration(400)
-    .attr("transform", `translate(0,${height})`)
+    .attr("transform", `translate(0,${heightHist})`)
       .call(d3.axisBottom(xhist));
 
   d3.selectAll(".y-axis-hist")

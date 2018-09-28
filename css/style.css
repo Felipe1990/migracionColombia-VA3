@@ -48,13 +48,16 @@ body {
 
 div.tooltip { 
     position: absolute;   
-    width: 70px;          
+    width: 90px;          
     height: 70px;         
     padding: 2px;       
     background: lightsteelblue; 
     border: 2px;    
     border-radius: 8px;     
-    pointer-events: none;     
+    pointer-events: none;
+    left: 330px;
+    top: 300px;
+   
 }
 
 .pathHistoric-entradas, 
@@ -73,4 +76,8 @@ div.tooltipHist {
     border: 2px;    
     border-radius: 8px;     
     pointer-events: none;     
+}
+
+.slidecontainer input{
+  width: 41%;
 }
